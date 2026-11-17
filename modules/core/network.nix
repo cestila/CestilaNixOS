@@ -2,9 +2,9 @@
   pkgs,
   host,
   options,
-  ...
+  vars, ...
 }: let
-  inherit (import ../../hosts/${host}/variables.nix) hostId;
+  inherit (vars) hostId;
 in {
   networking = {
     hostName = "${host}";

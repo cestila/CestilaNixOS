@@ -1,10 +1,9 @@
 {
   inputs,
   host,
-  ...
+  vars, ...
 }: let
   # Import the host-specific variables.nix
-  vars = import ../../hosts/${host}/variables.nix;
 in {
   imports =
     [

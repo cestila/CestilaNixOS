@@ -1,10 +1,9 @@
 {
   host,
   lib,
-  ...
+  vars, ...
 }: let
   # Import the host-specific variables.nix
-  vars = import ../../hosts/${host}/variables.nix;
   useLy = vars.displayManager == "tui";
 in {
   config = lib.mkIf useLy {

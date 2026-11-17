@@ -2,10 +2,8 @@
   pkgs,
   host,
   lib,
-  ...
-}: let
-  vars = import ../../hosts/${host}/variables.nix;
-in {
+  vars, ...
+}: {
   xdg = {
     enable = true;
     mime.enable = true;

@@ -3,9 +3,8 @@
   config,
   pkgs,
   lib,
-  ...
+  vars, ...
 }: let
-  vars = import ../../../hosts/${host}/variables.nix;
   extraMonitorSettings = vars.extraMonitorSettings or "";
   keyboardLayout = vars.keyboardLayout or "us";
   keyboardVariant = vars.keyboardVariant or "";

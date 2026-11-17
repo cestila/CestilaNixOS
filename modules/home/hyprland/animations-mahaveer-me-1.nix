@@ -1,7 +1,5 @@
-{host, ...}: let
-  inherit
-    (import ../../../hosts/${host}/variables.nix)
-    ;
+{host, vars, ...}: let
+  inherit (vars)  ;
 in {
   wayland.windowManager.hyprland.settings = {
     animations = {

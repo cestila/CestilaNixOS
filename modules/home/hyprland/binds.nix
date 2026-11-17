@@ -1,9 +1,8 @@
 {
   host,
   lib,
-  ...
+  vars, ...
 }: let
-  vars = import ../../../hosts/${host}/variables.nix;
   inherit
     (vars)
     barChoice

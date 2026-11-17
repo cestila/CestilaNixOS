@@ -1,9 +1,8 @@
 {
   pkgs,
   host,
-  ...
+  vars, ...
 }: let
-  vars = import ../../hosts/${host}/variables.nix;
   consoleKeyMap = vars.consoleKeyMap or "es";
   defaultLocale = vars.defaultLocale or "es_AR.UTF-8";
   timeZone = vars.timeZone or "America/Argentina/Buenos_Aires";

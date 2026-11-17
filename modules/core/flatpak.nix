@@ -1,9 +1,8 @@
 {
   pkgs,
   host,
-  ...
+  vars, ...
 }: let
-  vars = import ../../hosts/${host}/variables.nix;
   hyprlandEnable = vars.hyprlandEnable or true;
 in {
   xdg.portal = {

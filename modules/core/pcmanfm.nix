@@ -2,9 +2,9 @@
   host,
   pkgs,
   lib,
-  ...
+  vars, ...
 }: let
-  inherit (import ../../hosts/${host}/variables.nix) pcmanfmEnable;
+  inherit (vars) pcmanfmEnable;
 in {
   environment.systemPackages = lib.optionals pcmanfmEnable (with pkgs; [
     pcmanfm

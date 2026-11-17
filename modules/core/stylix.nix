@@ -1,9 +1,9 @@
 {
   pkgs,
   host,
-  ...
+  vars, ...
 }: let
-  inherit (import ../../hosts/${host}/variables.nix) stylixImage;
+  inherit (vars) stylixImage;
 in {
   # Styling Options
   stylix = {

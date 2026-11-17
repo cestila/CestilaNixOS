@@ -1,9 +1,9 @@
 {
   host,
   pkgs,
-  ...
+  vars, ...
 }: let
-  inherit (import ../../hosts/${host}/variables.nix) printEnable;
+  inherit (vars) printEnable;
 in {
   services = {
     printing = {

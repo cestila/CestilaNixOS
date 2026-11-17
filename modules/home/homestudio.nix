@@ -2,9 +2,8 @@
   pkgs,
   lib,
   host,
-  ...
+  vars, ...
 }: let
-  vars = import ../../hosts/${host}/variables.nix;
   homestudioWindowsVstEnable =
     vars.homestudioWindowsVstEnable
     or vars.homestudioWindowsVSTEnable

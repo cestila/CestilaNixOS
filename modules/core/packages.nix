@@ -2,9 +2,8 @@
   inputs,
   pkgs,
   host,
-  ...
+  vars, ...
 }: let
-  vars = import ../../hosts/${host}/variables.nix;
   inherit (vars) barChoice;
   hyprlandEnable = vars.hyprlandEnable or true;
 

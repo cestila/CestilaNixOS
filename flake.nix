@@ -75,24 +75,27 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    username = "cestila";
+    username = "user";
 
     mkNixosSystem = {
-      host,
+      host ? "default",
       profile,
+      hostPath ? ./hosts/${host},
+      vars ? import (hostPath + "/variables.nix"),
       extraModules ? [],
       user ? username,
     }:
       nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
-          inherit inputs host profile;
+          inherit inputs host hostPath vars profile;
           username = user;
         };
         modules =
           [
             ./modules/core/overlays.nix
             ./profiles/${profile}
+            hostPath
             nix-flatpak.nixosModules.nix-flatpak
             serpantinum.nixosModules.default
           ]
@@ -109,7 +112,6 @@
     };
 
     nixosConfigurations = {
-      cestila-note = mkNixosConfig "cestila-note" "intel";
       amd = mkNixosConfig "default" "amd";
       nvidia = mkNixosConfig "default" "nvidia";
       nvidia-laptop = mkNixosConfig "default" "nvidia-laptop";

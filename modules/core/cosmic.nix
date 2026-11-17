@@ -3,9 +3,8 @@
   config,
   lib,
   host,
-  ...
+  vars, ...
 }: let
-  vars = import ../../hosts/${host}/variables.nix;
   cosmicEnable = vars.cosmicEnable or false;
 in {
   config = lib.mkIf cosmicEnable {

@@ -2,9 +2,8 @@
   config,
   host,
   lib,
-  ...
+  vars, ...
 }: let
-  vars = import ../../hosts/${host}/variables.nix;
   barChoice = vars.barChoice or "waybar";
   isDux = barChoice == "dux-shell" || barChoice == "dux" || barChoice == "dms";
 in {

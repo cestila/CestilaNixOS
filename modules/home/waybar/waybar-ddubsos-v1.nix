@@ -3,10 +3,10 @@
   config,
   lib,
   host,
-  ...
+  vars, ...
 }: let
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
-  inherit (import ../../../hosts/${host}/variables.nix) clock24h;
+  inherit (vars) clock24h;
   scriptsDir = ./scripts;
   scripts = builtins.attrNames (builtins.readDir scriptsDir);
 in

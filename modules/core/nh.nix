@@ -2,10 +2,8 @@
   pkgs,
   username,
   host,
-  ...
-}: let
-  vars = import ../../hosts/${host}/variables.nix;
-in {
+  vars, ...
+}: {
   programs.nh = {
     enable = true;
     clean = {

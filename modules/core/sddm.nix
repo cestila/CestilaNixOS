@@ -4,7 +4,7 @@
   config,
   lib,
   host,
-  ...
+  vars, ...
 }: let
   foreground = config.stylix.base16Scheme.base00;
   textColor = config.stylix.base16Scheme.base05;
@@ -70,7 +70,6 @@ in {
       wayland.enable = true;
       theme = "sddm-astronaut-theme";
       settings = let
-        vars = import ../../hosts/${host}/variables.nix;
         keyboardLayout = vars.keyboardLayout or "us";
         keyboardVariant = vars.keyboardVariant or "";
       in {
@@ -84,7 +83,6 @@ in {
 
   # Ensure Wayland SDDM also sees XKB defaults
   systemd.services.display-manager.environment = let
-    vars = import ../../hosts/${host}/variables.nix;
     keyboardLayout = vars.keyboardLayout or "us";
     keyboardVariant = vars.keyboardVariant or "";
   in ({XKB_DEFAULT_LAYOUT = keyboardLayout;}

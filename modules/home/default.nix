@@ -1,5 +1,4 @@
-{host, ...}: let
-  vars = import ../../hosts/${host}/variables.nix;
+{host, vars, ...}: let
   inherit
     (vars)
     alacrittyEnable
