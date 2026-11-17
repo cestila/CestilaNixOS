@@ -188,6 +188,9 @@
       host_folder=$(get_flake_host_folder "$current_hostname")
 
       if [ -z "$host_folder" ]; then
+        if ${pkgs.nix}/bin/nix eval "$PROJECT_DIR#nixosConfigurations" --apply "c: builtins.hasAttr \"$current_hostname\" c" 2>/dev/null | grep -q "true"; then
+          return 0
+        fi
         echo "Error: Hostname '$current_hostname' not found in nixosConfigurations in $FLAKE_NIX_PATH" >&2
         echo "" >&2
         echo "Available configurations:" >&2
