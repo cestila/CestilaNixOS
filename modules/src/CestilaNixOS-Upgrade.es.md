@@ -1,0 +1,147 @@
+[English](CestilaNixOS-Upgrade.md) | [Español](CestilaNixOS-Upgrade.es.md)
+
+# 🚀 Procedimiento de Actualización de CestilaNixOS
+
+## ⚠️ DEPRECADO - Usa el nuevo sistema de actualización automatizado
+
+> **IMPORTANTE:**
+>
+> Este procedimiento manual ha sido **reemplazado** por un sistema automatizado mucho más seguro y completo.
+>
+> **Usa el nuevo sistema:**
+> - Revisa: `UPGRADE-2.3-to-2.4.md` (documentación completa)
+> - Ejecuta: `./upgrade-2.3-to-2.4.sh` (actualización automatizada)
+> - Incluye respaldos automáticos, migración de variables y reversión sencilla
+
+---
+
+## 🆕 Nuevo Sistema Automatizado
+
+Proporciona:
+- **Respaldo completo** antes de cambios
+- **Migración automática** de variables 2.3 → 2.4 (15+ variables)
+- **Manejo de terminales** crítico para 2.4
+- **Build seguro** con `boot` para evitar problemas visuales
+- **Reversión con un comando** si algo falla
+- **Logs** completos para diagnóstico
+
+### Inicio Rápido
+```bash
+# Obtén el script sin modificar tu repo
+git -C ~/cestilanixos fetch origin && \
+  git -C ~/cestilanixos show origin/main:upgrade-2.3-to-2.4.sh > ~/upgrade-2.3-to-2.4.sh && \
+  chmod +x ~/upgrade-2.3-to-2.4.sh
+
+# Ejecuta el script (crea respaldo completo antes de cambiar ramas)
+~/upgrade-2.3-to-2.4.sh
+```
+
+Alternativa (curl):
+```bash
+curl -fsSL https://gitlab.com/zaney/cestilanixos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+~/upgrade-2.3-to-2.4.sh
+```
+
+### Instrucciones Detalladas
+```bash
+less UPGRADE-2.3-to-2.4.md
+```
+
+---
+
+## ⚠️ ¿Por qué usar el sistema nuevo?
+
+El proceso manual es **incompleto y riesgoso** porque:
+- ❌ Maneja pocas variables (2.4 añade 15+)
+- ❌ No hay respaldo automático
+- ❌ No maneja dependencias de terminal
+- ❌ No hay opción de revertir si falla
+- ❌ Faltan variables críticas como `doomEmacsEnable`, monitores, tema
+- ❌ Referencias desactualizadas (`fr`, `fu` en vez de `cnixcli`)
+
+---
+
+# 📜 Procedimiento Manual Original (DEPRECADO)
+
+> **⚠️ ADVERTENCIA:** Proceso manual desactualizado e incompleto.
+> **Usa el sistema automatizado indicado arriba.**
+
+---
+
+### 1. 📝 Preparación
+
+1. **Asegura que tu CestilaNixOS actual esté al día:**
+   - Ve a tu carpeta CestilaNixOS:
+     ```bash
+     cd ~/cestilanixos
+     ```
+   - Si tienes cambios sin commit, súbelos primero.
+   - Trae los últimos cambios:
+     ```bash
+     git stash && git fetch && git pull
+     ```
+   - Verifica que host y GPU en `flake.nix` coincidan con tu sistema.
+     - Puedes editarlos manualmente.
+     - Dependiendo de tu build actual, quizá puedas ejecutar `cnixcli update-host`.
+   - Si hay cambios, reconstruye y reinicia (`cnixcli rebuild`).
+
+2. **Respalda tu directorio actual:**
+   ```bash
+   mv ~/cestilanixos ~/cestilanixos-backup
+   ```
+
+3. **Clona la rama v2.4:**
+   ```bash
+   git clone https://gitlab.com/zaney/cestilanixos.git -b Stable-2.4 --depth=1
+   cd ~/cestilanixos
+   ```
+
+---
+
+### 2. 🔄 Convertir hosts 2.3 a 2.4
+
+- **Nuevas opciones en `hosts/<hostname>/variables.nix`:**
+  ```nix
+  displayManager = "sddm";
+  tmuxEnable = false;
+  alacrittyEnable = false;
+  weztermEnable = false;
+  ghosttyEnable = false;
+  vscodeEnable = false;
+  helixEnable = false;
+  ```
+
+- **Pasos de migración:**
+  1. Copia la plantilla `hosts/default` a tu hostname
+  2. Copia `hardware.nix` desde el respaldo
+  3. `git add .`
+  4. Integra tus personalizaciones manualmente en el nuevo layout (no sobrescribas archivos 2.4)
+
+---
+
+### 3. ✅ Probar la Configuración
+
+1. Verifica `flake.nix` (hostname y GPU). Si tienes `cnixcli update-host`, úsalo.
+2. Ejecuta:
+   ```bash
+   nix flake check
+   ```
+
+---
+
+### 4. ⬆️ Ejecutar la Actualización
+
+> ⚠️ **CRÍTICO:**
+> - No uses `fr`, `fu` ni `cnixcli` para este paso final.
+> - Podría provocar un crash de Hyprland al reiniciar el display manager.
+
+1. Ejecuta desde `~/cestilanixos`:
+   ```bash
+   sudo nixos-rebuild boot --flake .#PROFILE
+   ```
+2. Reinicia.
+
+---
+
+### 🎉 ¡Bienvenido a CestilaNixOS v2.4!

@@ -1,0 +1,40 @@
+schema: spec-driven
+
+context: |
+  Tech stack: NixOS Flake, Home Manager, Nixvim, Stylix, Bash
+  Architecture: Modular NixOS configuration with host-specific profiles and home modules
+  Testing: No automated test runner detected (validation via nix flake check and nix fmt)
+  Style: Alejandra formatter, conventional commits
+
+strict_tdd: false
+
+testing:
+  runner: none
+  layers:
+    unit: false
+    integration: false
+    e2e: false
+  coverage: false
+  quality:
+    linter: "nix flake check"
+    type_checker: none
+    formatter: "nix fmt"
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Verify host and profile references before structural refactors
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+  apply:
+    - Format code with nix fmt (alejandra)
+    - Run nix flake check to validate Nix syntax and module evaluation
+  verify:
+    - Validate evaluation of target NixOS configurations

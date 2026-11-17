@@ -1,0 +1,27 @@
+{
+  "id": "vpn",
+  "name": "VPN Manager",
+  "version": "1.0.0",
+  "minNoctaliaVersion": "4.0.0",
+  "author": "CestilaNixOS",
+  "license": "MIT",
+  "description": "VPN connection indicator and quick toggle for NetworkManager, WireGuard and OpenVPN.",
+  "tags": [
+    "Bar",
+    "Network",
+    "VPN"
+  ],
+  "entryPoints": {
+    "main": "Main.qml",
+    "barWidget": "BarWidget.qml",
+    "panel": "Panel.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "autoRefreshInterval": 5
+    }
+  }
+}

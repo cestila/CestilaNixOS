@@ -1,0 +1,17 @@
+# Editor backup files and swap files
+*~
+.*.swp
+.*.swo
+*.bak
+*.tmp
+.DS_Store
+
+# NixOS build artifact
+result
+
+# Playwright CLI output (may contain credentials)
+.playwright-cli/
+.playwright/
+.codegraph/
+.cloudflare/
+~/*

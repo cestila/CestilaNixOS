@@ -1,0 +1,43 @@
+{
+  "toolbar": {
+    "quick_actions": false
+  },
+  "show_edit_predictions": true,
+  "terminal": {
+    "shell": "system",
+    "font_family": "IosevkaTerm Nerd Font",
+    "env": {
+      "ZED_TERMINAL": "1"
+    },
+    "line_height": { "custom": 1.25 }
+  },
+  "project_panel": {
+    "dock": "left",
+    "indent_size": 12
+  },
+  "context_servers": {
+    "antigravity": {
+      "command": "npx",
+      "args": ["-y", "antigravity-acp"]
+    }
+  },
+  "vim_mode": true,
+  "vim": {
+    "toggle_relative_line_numbers": true
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "agent_ui_font_size": 16,
+  "ui_font_family": "IosevkaTerm Nerd Font",
+  "buffer_font_family": "IosevkaTerm Nerd Font",
+  "theme": {
+    "mode": "system",
+    "light": "Kanagawa Lotus",
+    "dark": "Gentleman Kanagawa Blur"
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  }
+}
