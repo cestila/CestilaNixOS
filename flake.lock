@@ -140,11 +140,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795033570,
-        "narHash": "sha256-mGzYGJ9odg/Pre6wNj+rxV3EXH7PpWMGHwl5DLnyXWY=",
+        "lastModified": 1795089040,
+        "narHash": "sha256-oleENuRge5T2ekz8bKxs2A/on9twVZPwLKmmrgFvkY4=",
         "owner": "cestila",
         "repo": "ConduitOmniChat",
-        "rev": "e7816afce20409b8ec0c4efdcbcbba8500ccec58",
+        "rev": "2fa144a5a0fa9790d5796f9af18b8c260e7edab6",
         "type": "github"
       },
       "original": {
